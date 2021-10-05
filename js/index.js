@@ -13,7 +13,15 @@
 
 window.addEventListener("DOMContentLoaded", () => {
   const start = document.querySelector("#start");
+  const submit = document.querySelector("#btnSubmit");
+  const reset = document.querySelector("#btnReset");
+  const score = document.querySelector("#score");
+  const timer = document.querySelector("#time");
+
+  
   start.addEventListener("click", function (e) {
+    let oneMinute = 60 * 1;
+    //StartTimer(oneMinute,display);
     document.querySelector("#quizBlock").style.display = "block";
     start.style.display = "none";
   });
@@ -36,6 +44,16 @@ window.addEventListener("DOMContentLoaded", () => {
       o: ["Sydney", "Canberra", "Melbourne", "Perth"],
       a: 1,
     },
+    {
+      q: "Who is number one men's tennise player in the world",
+      o: ["Daniil Medvedev", "Novak Djokovic", "Rafael Nadal", "Alex De Minaur"],
+      a: 1,
+    },
+    {
+      q:"What is the distance between the Sun and the Earth",
+      o:["149.57 million km", "200.21 million Km", "130.20 million km", "500 million km"],
+      a: 0,
+    },
   ];
 
   // function to Display the quiz questions and answers from the object
@@ -55,6 +73,7 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+
   // Calculate the score
   const calculateScore = () => {
     let score = 0;
@@ -68,6 +87,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
         if (quizItem.a == i) {
           //change background color of li element here
+             index[i].backgroundcolor="blue";
         }
 
         if (radioElement.checked) {
@@ -76,6 +96,16 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     });
   };
+
+
+
+//Calculate the score when submit button is selected
+
+submit.addEventListener("click",calculateScore);
+
+  //reload the quiz when Reset buttion is pressed
+
+  reset.addEventListener("click",displayQuiz);
 
   // call the displayQuiz function
   displayQuiz();
