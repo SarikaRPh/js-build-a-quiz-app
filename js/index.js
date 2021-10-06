@@ -18,16 +18,42 @@ window.addEventListener("DOMContentLoaded", () => {
   const score = document.querySelector("#score");
   const timer = document.querySelector("#time");
 
+  // set the timer to one minute
   
+    let second = 60;
+    let time;
+    
+    function startTime() {
+      timer.innerHTML = second + "sec left";
+      second--;
+      if (second == -1) {
+          clearInterval(time);
+          alert("Time out!!");
+          calculateScore();
+      }
+    }
+
+    function stopTime(){
+      clearInterval(time);
+
+  }
+
   start.addEventListener("click", function (e) {
     e.preventDefault();
-// set the timer to one minute
-  let oneMinute = 60 * 1;
-  // startTimer(oneMinute,timer);
-   
+    time = setInterval(startTime,1000);
+
+
+  
+  
+  //setTimeout(function(){ alert("Your time is finished"); }, timer);
+
+
     document.querySelector("#quizBlock").style.display = "block";
     start.style.display = "none";
+
   });
+
+
   // quizArray QUESTIONS & ANSWERS
   // q = QUESTION, o = OPTIONS, a = CORRECT ANSWER
   // Basic ideas from https://code-boxx.com/simple-javascript-quiz/
@@ -82,8 +108,11 @@ window.addEventListener("DOMContentLoaded", () => {
   
   // Calculate the score
   const calculateScore = (e) => {
+
+    stopTime();
+   
     console.log("inside calculatescore");
-    e.preventDefault();
+    //e.preventDefault();
      let score = 0;
      console.log (score);
           quizArray.map((quizItem, index) => {
@@ -96,7 +125,7 @@ window.addEventListener("DOMContentLoaded", () => {
 //console.log("radioElement"+ i+ "==" + quizItem.a + "radioelement" + radioElement.checked);
         if (quizItem.a == i) {
           //change background color of li element here
-            liElement.style.backgroundColor="blue";
+            liElement.style.backgroundColor="lightblue";
             
             //score++
         }
@@ -126,6 +155,7 @@ submit.addEventListener("click",calculateScore);
   //reload the quiz when Reset buttion is pressed
 
   reset.addEventListener("click",refreshPage);
+  
 function refreshPage(){
   window.location.assign("http://127.0.0.1:5500/index.html");
 }
