@@ -157,7 +157,7 @@ submit.addEventListener("click",calculateScore);
   reset.addEventListener("click",refreshPage);
   
 function refreshPage(){
-  window.location.assign("http://127.0.0.1:5500/index.html");
+  window.location.reload();
 }
   // call the displayQuiz function
   displayQuiz();
