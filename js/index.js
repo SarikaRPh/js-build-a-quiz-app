@@ -93,13 +93,15 @@ window.addEventListener("DOMContentLoaded", () => {
         let r = `radio_${index}_${i}`;
         liElement = document.querySelector("#" + li);
         radioElement = document.querySelector("#" + r);
-console.log("radioElement"+ i+ "==" + quizItem.a + "radioelement" + radioElement.checked);
+//console.log("radioElement"+ i+ "==" + quizItem.a + "radioelement" + radioElement.checked);
         if (quizItem.a == i) {
           //change background color of li element here
             liElement.style.backgroundColor="blue";
             
             //score++
         }
+
+        //check the user selected answer with correct answer and incrementing the score.
 
         if (radioElement.checked === true && i===quizItem.a)           
           
@@ -109,7 +111,9 @@ console.log("radioElement"+ i+ "==" + quizItem.a + "radioelement" + radioElement
       }
     });
     console.log (score);
-    // return `You scored${score}`;
+    
+    //Displaying the final score
+
     document.querySelector('#score').textContent = `Your score is ${score}`;
   };
 
