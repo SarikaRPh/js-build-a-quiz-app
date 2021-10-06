@@ -20,8 +20,11 @@ window.addEventListener("DOMContentLoaded", () => {
 
   
   start.addEventListener("click", function (e) {
-    let oneMinute = 60 * 1;
-    //StartTimer(oneMinute,display);
+    e.preventDefault();
+// set the timer to one minute
+  let oneMinute = 60 * 1;
+  // startTimer(oneMinute,timer);
+   
     document.querySelector("#quizBlock").style.display = "block";
     start.style.display = "none";
   });
@@ -73,28 +76,41 @@ window.addEventListener("DOMContentLoaded", () => {
     });
   };
 
+  let maxscore = quizArray.length;
+  let quesForm = document.quesForm;
 
+  
   // Calculate the score
-  const calculateScore = () => {
-    let score = 0;
-    quizArray.map((quizItem, index) => {
+  const calculateScore = (e) => {
+    console.log("inside calculatescore");
+    e.preventDefault();
+     let score = 0;
+     console.log (score);
+          quizArray.map((quizItem, index) => {
       for (let i = 0; i < 4; i++) {
         //highlight the li if it is the correct answer
         let li = `li_${index}_${i}`;
         let r = `radio_${index}_${i}`;
         liElement = document.querySelector("#" + li);
         radioElement = document.querySelector("#" + r);
-
+console.log("radioElement"+ i+ "==" + quizItem.a + "radioelement" + radioElement.checked);
         if (quizItem.a == i) {
           //change background color of li element here
-             index[i].backgroundcolor="blue";
+            liElement.style.backgroundColor="blue";
+            
+            //score++
         }
 
-        if (radioElement.checked) {
-          // code for task 1 goes here
-        }
+        if (radioElement.checked === true && i===quizItem.a)           
+          
+           score++
+  
+          
       }
     });
+    console.log (score);
+    // return `You scored${score}`;
+    document.querySelector('#score').textContent = `Your score is ${score}`;
   };
 
 
@@ -105,8 +121,10 @@ submit.addEventListener("click",calculateScore);
 
   //reload the quiz when Reset buttion is pressed
 
-  reset.addEventListener("click",displayQuiz);
-
+  reset.addEventListener("click",refreshPage);
+function refreshPage(){
+  window.location.assign("http://127.0.0.1:5500/index.html");
+}
   // call the displayQuiz function
   displayQuiz();
 });
