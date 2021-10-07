@@ -124,6 +124,11 @@ window.addEventListener("DOMContentLoaded", () => {
         let r = `radio_${index}_${i}`;
         liElement = document.querySelector("#" + li);
         radioElement = document.querySelector("#" + r);
+
+
+        radioElement.disabled = true;
+
+
 //console.log("radioElement"+ i+ "==" + quizItem.a + "radioelement" + radioElement.checked);
         if (quizItem.a == i) {
           //change background color of li element here
