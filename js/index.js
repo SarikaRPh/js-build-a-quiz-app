@@ -26,10 +26,12 @@ window.addEventListener("DOMContentLoaded", () => {
     function startTime() {
       timer.innerHTML = second + "sec left";
       second--;
-      if (second == -1) {
+      if (second === -2) {
           clearInterval(time);
           alert("Time out!!");
+          submit.style.display = 'none';
           calculateScore();
+
       }
     }
 
@@ -110,7 +112,7 @@ window.addEventListener("DOMContentLoaded", () => {
   const calculateScore = (e) => {
 
     stopTime();
-   
+    submit.style.display = 'none';
     console.log("inside calculatescore");
     //e.preventDefault();
      let score = 0;
